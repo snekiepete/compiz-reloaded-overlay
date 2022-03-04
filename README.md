@@ -1,8 +1,8 @@
-# compiz-reloaded-overlay (No longer maintained)
+# compiz-reloaded-overlay
 
 ## Info
 
-Repoman status: (Currently unavailable as the CI provider has shut down)
+As ethus3h no longer maintains this repository, I have decided to try doing it myself.
 
 This overlay provides ebuilds for Compiz-Reloaded. The instructions below document how to add and use this overlay with Portage. (If you prefer to use the overlay differently than below, feel free.)
 
@@ -40,7 +40,7 @@ To add this overlay to Portage using `eselect-repository`, run `eselect reposito
 
 #### Version and live ebuilds
 
-You can use ''version'' ebuilds, which correspond to the released versions of compiz-reloaded, or ''live'' ebuilds, which pull in the latest commits from the compiz-reloaded git repository at build time.
+You can use "version" ebuilds, which correspond to the released versions of compiz-reloaded, or "live" ebuilds, which pull in the latest commits from the compiz-reloaded git repository at build time.
 
 If you use the version ebuilds, they will need to accept the Portage keywords for either `~amd64` or `~x86` depending on the architecture; other architectures aren't given keywords in these ebuilds right now.
 
@@ -53,7 +53,6 @@ To see how to do this, see the Gentoo wiki pages at https://wiki.gentoo.org/wiki
 These packages are provided by this overlay, with both version and live ebuilds available for each. Once the overlay is installed and keywords have been set, these can be `emerge`d as with any other Gentoo package.
 
 - dev-python/compizconfig-python
-- ~~x11-apps/compiz-boxmenu~~ Not currently available pending resolution of https://gitlab.com/compiz/compiz-boxmenu/-/issues/7
 - x11-apps/compiz-manager
 - x11-apps/fusion-icon
 - x11-libs/compiz-bcop
@@ -78,3 +77,7 @@ These packages are provided by this overlay, with both version and live ebuilds 
 Version ebuilds will be updated automatically in the usual manner of installed packages.
 
 Live ebuilds will not be automatically updated when updating your installed packages, but can be updated by running `smart-live-rebuild` (if that command is not available, it can be installed by running `emerge app-portage/smart-live-rebuild`).
+
+## Important Note
+
+In some instances, compiz will not pull gnome-base/librsvg while emerging. To ensure there is no error while emerging `compiz-meta`, emerge libsrvg first!
