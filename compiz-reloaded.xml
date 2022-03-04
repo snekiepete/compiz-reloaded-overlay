@@ -4,13 +4,13 @@
 <repo quality="experimental" status="unofficial">
    <name>compiz-reloaded</name>
    <description>Ebuilds for Compiz</description>
-   <homepage>https://futuramerlin.com/</homepage>
+   <homepage>https://github.com/CerisWhite/compiz-reloaded-overlay</homepage>
    <owner>
        <email>info@futuramerlin.com</email>
        <name>Futuramerlin</name>
    </owner>
-   <source type="git">https://github.com/ethus3h/compiz-reloaded-overlay.git</source>
-   <source type="git">https://github.com/ethus3h/compiz-reloaded-overlay.git</source>
-   <feed>https://github.com/ethus3h/compiz-reloaded-overlay/commits/master.atom</feed>
+   <source type="git">https://github.com/CerisWhite/compiz-reloaded-overlay.git</source>
+   <source type="git">https://github.com/CerisWhite/compiz-reloaded-overlay.git</source>
+   <feed>https://github.com/CerisWhite/compiz-reloaded-overlay/commits/master.atom</feed>
 </repo>
 </repositories>
