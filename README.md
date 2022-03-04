@@ -14,7 +14,7 @@ When upgrading from version 0.8.16 to 0.8.18, if both compiz-plugins-extra and c
 
 #### Adding using Layman
 
-To add this overlay to Portage using `layman`, run `layman -o https://github.com/ethus3h/compiz-reloaded-overlay/raw/master/compiz-reloaded.xml -f -a compiz-reloaded`. To update the repository, run `layman -s compiz-reloaded` (or `layman -S` to update all the installed overlays managed by Layman).
+To add this overlay to Portage using `layman`, run `layman -o https://github.com/CerisWhite/compiz-reloaded-overlay/raw/master/compiz-reloaded.xml -f -a compiz-reloaded`. To update the repository, run `layman -s compiz-reloaded` (or `layman -S` to update all the installed overlays managed by Layman).
 
 #### Adding using repos.conf
 
@@ -25,7 +25,7 @@ To add this overlay to Portage in `repos.conf`, here is example configuration fo
 priority = 50
 location = /var/lib/layman/compiz-reloaded
 sync-type = git
-sync-uri = https://github.com/ethus3h/compiz-reloaded-overlay.git
+sync-uri = https://github.com/CerisWhite/compiz-reloaded-overlay.git
 auto-sync = yes
 clone-depth = 0
 ```
@@ -34,7 +34,7 @@ See the Gentoo wiki page at https://wiki.gentoo.org/wiki//etc/portage/repos.conf
 
 #### Adding using eselect-repository (not tested)
 
-To add this overlay to Portage using `eselect-repository`, run `eselect repository add compiz-reloaded git https://github.com/ethus3h/compiz-reloaded-overlay.git`. The repository should be automatically updated when you update your system.
+To add this overlay to Portage using `eselect-repository`, run `eselect repository add compiz-reloaded git https://github.com/CerisWhite/compiz-reloaded-overlay.git`. The repository should be automatically updated when you update your system.
 
 ### Installation of packages
 
@@ -78,15 +78,3 @@ These packages are provided by this overlay, with both version and live ebuilds 
 Version ebuilds will be updated automatically in the usual manner of installed packages.
 
 Live ebuilds will not be automatically updated when updating your installed packages, but can be updated by running `smart-live-rebuild` (if that command is not available, it can be installed by running `emerge app-portage/smart-live-rebuild`).
-
-### Getting help
-
-Feel free to ask questions [issue tracker](https://github.com/ethus3h/compiz-reloaded-overlay/issues) and/or in the Matrix chat (probably quickest response) at [#futuramerlin:matrix.org](https://matrix.to/#/%23futuramerlin:matrix.org); more up-to-date contact information may be available at http://futuramerlin.com/contact.htm. (You can also send email to [elli@futuramerlin.com](mailto:elli@futuramerlin.com), but that's not recommended as I may not see it.)
-
-For general discussion about Compiz-Reloaded, [the #compiz-reloaded channel](irc://irc.freenode.net/compiz-reloaded) on the Freenode IRC network is available.
-
-Good luck!
-
-## Issues and merge requests — I might not see them quickly on GitHub; you can also message me on Matrix.
-
-Feel free to send me a message on Matrix ([#futuramerlin:matrix.org](https://matrix.to/#/%23futuramerlin:matrix.org)) to mention issues/merge requests. I'm likely to forget to look at GitHub often, but should check Matrix pretty much daily.
