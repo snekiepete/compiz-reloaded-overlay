@@ -16,7 +16,7 @@ KEYWORDS=""
 
 RDEPEND="${PYTHON_DEPS}
 	$(python_gen_cond_dep '
-		dev-python/cython[${PYTHON_MULTI_USEDEP}]
+		dev-python/cython[${PYTHON_USEDEP}]
 	')
 	>=dev-libs/glib-2.6
 	>=x11-libs/libcompizconfig-${PV}

@@ -21,7 +21,7 @@ RDEPEND="${PYTHON_DEPS}
 	>=dev-python/compizconfig-python-0.8.12[${PYTHON_SINGLE_USEDEP}]
 	<dev-python/compizconfig-python-0.9
 	$(python_gen_cond_dep '
-		dev-python/pygobject:3[${PYTHON_MULTI_USEDEP}]
+		dev-python/pygobject:3[${PYTHON_USEDEP}]
 	')
 	x11-apps/xvinfo
 	x11-apps/mesa-progs
@@ -32,7 +32,7 @@ RDEPEND="${PYTHON_DEPS}
 	)
 	qt5? (
 		$(python_gen_cond_dep '
-			dev-python/PyQt5[${PYTHON_MULTI_USEDEP}]
+			dev-python/PyQt5[${PYTHON_USEDEP}]
 		')
 	)
 "

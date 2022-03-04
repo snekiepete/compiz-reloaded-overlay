@@ -26,10 +26,10 @@ RDEPEND="
 	>=dev-python/compizconfig-python-0.8[${PYTHON_SINGLE_USEDEP}]
 	<dev-python/compizconfig-python-0.9
 	$(python_gen_cond_dep '
-		dev-python/pycairo[${PYTHON_MULTI_USEDEP}]
+		dev-python/pycairo[${PYTHON_USEDEP}]
 	')
 	$(python_gen_cond_dep '
-		dev-python/pygobject:3[${PYTHON_MULTI_USEDEP}]
+		dev-python/pygobject:3[${PYTHON_USEDEP}]
 	')
 	>=x11-misc/ccsm-0.8[gtk3=,${PYTHON_SINGLE_USEDEP}]
 	<x11-misc/ccsm-0.9
