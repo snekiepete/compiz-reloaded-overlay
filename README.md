@@ -81,3 +81,6 @@ Live ebuilds will not be automatically updated when updating your installed pack
 ## Important Note
 
 `librsvg` does not ship the requested "librsvg-features.h" that `compiz-meta` relies on. It is now named "rsvg-features.h", omitting the "lib". To correct this, I have made a simple script to create the necessary symlinks. `emerge librsvg` before continuing!
+`curl https://raw.githubusercontent.com/CerisWhite/compiz-reloaded-overlay/master/fix-rsvg-includes.sh | sudo bash`
+or if you've installed through layman
+`sudo bash /var/lib/layman/compiz-reloaded/fix-rsvg-includes.sh`
