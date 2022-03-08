@@ -80,4 +80,4 @@ Live ebuilds will not be automatically updated when updating your installed pack
 
 ## Important Note
 
-In some instances, compiz will not pull gnome-base/librsvg while emerging. To ensure there is no error while emerging `compiz-meta`, emerge libsrvg first!
+`librsvg` does not ship the requested "librsvg-features.h" that `compiz-meta` relies on. It is now named "rsvg-features.h", omitting the "lib". To correct this, I have made a simple script to create the necessary symlinks. `emerge librsvg` before continuing!
