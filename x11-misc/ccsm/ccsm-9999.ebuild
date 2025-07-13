@@ -3,10 +3,15 @@
 
 EAPI=8
 
+DISTUTILS_USE_PEP517=no
+
 PYTHON_COMPAT=( python3_{4,5,6,7,8,9,10,11,12,13,14} )
 DISTUTILS_IN_SOURCE_BUILD=1
 DISTUTILS_SINGLE_IMPL=1
+
 inherit distutils-r1 git-r3 gnome2-utils
+
+DISTUTILS_USE_PEP517=no
 
 DESCRIPTION="A graphical manager for CompizConfig Plugin (libcompizconfig)"
 HOMEPAGE="https://gitlab.com/compiz"
