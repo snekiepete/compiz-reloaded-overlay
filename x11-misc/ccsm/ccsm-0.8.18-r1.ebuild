@@ -61,6 +61,12 @@ pkg_postrm() {
 }
 
 src_install() {
+    distutils-r1_python_install() {
+        distutils-r1_python_install_orig "$@"
+        # Fix the failing rm line:
+        local reg_scriptdir="${D}/usr/bin"
+        rm -f "${reg_scriptdir}"/{"${EPYTHON}",python3,python} || die
+    }
+
     distutils-r1_src_install
-    [[ -d "${D}/usr/bin" ]] && rm -f "${D}/usr/bin"/{${EPYTHON},python3,python}
 }
