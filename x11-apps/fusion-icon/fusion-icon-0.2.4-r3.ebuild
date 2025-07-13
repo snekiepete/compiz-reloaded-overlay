@@ -31,7 +31,7 @@ RDEPEND="${PYTHON_DEPS}
 	>=x11-wm/compiz-0.8
 	<x11-wm/compiz-0.9
 	gtk3? (
-		dev-libs/libappindicator:3
+		dev-libs/libappindicator:=
 	)
 	qt5? (
 		$(python_gen_cond_dep '

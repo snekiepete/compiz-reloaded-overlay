@@ -29,7 +29,7 @@ RDEPEND="${PYTHON_DEPS}
 	x11-apps/mesa-progs
 	>=x11-wm/compiz-${PV}
 	gtk3? (
-		dev-libs/libappindicator:3
+		dev-libs/libappindicator:=
 	)
 	qt5? (
 		$(python_gen_cond_dep '
