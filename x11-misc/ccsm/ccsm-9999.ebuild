@@ -11,8 +11,6 @@ DISTUTILS_SINGLE_IMPL=1
 
 inherit distutils-r1 git-r3 gnome2-utils
 
-DISTUTILS_USE_PEP517=no
-
 DESCRIPTION="A graphical manager for CompizConfig Plugin (libcompizconfig)"
 HOMEPAGE="https://gitlab.com/compiz"
 EGIT_REPO_URI="https://github.com/compiz-reloaded/ccsm.git"
@@ -60,4 +58,9 @@ pkg_postinst() {
 
 pkg_postrm() {
 	gnome2_icon_cache_update
+}
+
+src_install() {
+    distutils-r1_src_install
+    [[ -d "${D}/usr/bin" ]] && rm -f "${D}/usr/bin"/{${EPYTHON},python3,python}
 }

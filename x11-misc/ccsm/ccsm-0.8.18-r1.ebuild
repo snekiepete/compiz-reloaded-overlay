@@ -59,3 +59,8 @@ pkg_postinst() {
 pkg_postrm() {
 	gnome2_icon_cache_update
 }
+
+src_install() {
+    distutils-r1_src_install
+    [[ -d "${D}/usr/bin" ]] && rm -f "${D}/usr/bin"/{${EPYTHON},python3,python}
+}
