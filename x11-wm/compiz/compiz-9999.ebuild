@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit autotools git-r3 xdg-utils gsettings
+inherit autotools git-r3 xdg-utils
 
 DESCRIPTION="OpenGL window and compositing manager"
 HOMEPAGE="https://gitlab.com/compiz"
@@ -72,7 +72,7 @@ src_prepare() {
 }
 
 src_configure() {
-	local myconf=( )
+	local myconf=()
 	if use gtk; then
 		myconf+=( "--with-gtk=$(usex gtk3 3.0 2.0)" )
 	else
@@ -102,39 +102,43 @@ src_install() {
 }
 
 compiz_icon_cache_update() {
-	# Compiz has its own icon theme dir; refresh its cache specifically.
+	# Compiz maintains its own icon theme dir; refresh its cache too.
 	local dir="${EROOT}/usr/share/compiz/icons/hicolor"
 	local updater="${EROOT}/usr/bin/gtk-update-icon-cache"
 
 	if [[ -d ${dir} ]]; then
-		# Update cache if there are icons (ignore failure to keep pkg phases clean)
+		# Update cache if there are icons
 		if compgen -G "${dir}/**/*" >/dev/null; then
 			"${updater}" -q -f -t "${dir}" || ewarn "gtk-update-icon-cache failed for ${dir}"
 		fi
-		# Remove stale cache if it's the only file left
+		# Remove stale cache if it's the only file
 		[[ -f ${dir}/icon-theme.cache && -z $(ls -A "${dir}" | grep -v '^icon-theme\.cache$') ]] && rm -f "${dir}/icon-theme.cache"
-		# Remove empty theme directory
+		# Remove empty dir
 		[[ -z $(ls -A "${dir}") ]] && rmdir "${dir}" 2>/dev/null
 	fi
 }
 
+_gsettings_compile() {
+	# Manual replacement for gsettings.eclass helpers
+	if use gsettings && [[ -x ${EROOT}/usr/bin/glib-compile-schemas ]]; then
+		"${EROOT}"/usr/bin/glib-compile-schemas "${EROOT}"/usr/share/glib-2.0/schemas \
+			|| ewarn "glib-compile-schemas failed"
+	fi
+}
+
 pkg_postinst() {
-	# Standard XDG caches (replaces gnome2_icon_cache_update)
+	# XDG caches (replaces old gnome2_* helpers)
 	xdg_icon_cache_update
 	xdg_desktop_database_update
 	xdg_mimeinfo_database_update
-
 	compiz_icon_cache_update
-
-	use gsettings && gnome2_schemas_update
+	_gsettings_compile
 }
 
 pkg_postrm() {
 	xdg_icon_cache_update
 	xdg_desktop_database_update
 	xdg_mimeinfo_database_update
-
 	compiz_icon_cache_update
-
-	use gsettings && gnome2_schemas_update
+	_gsettings_compile
 }
