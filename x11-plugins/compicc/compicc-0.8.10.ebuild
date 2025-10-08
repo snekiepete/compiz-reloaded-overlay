@@ -24,7 +24,7 @@ RDEPEND="
 "
 
 DEPEND="${RDEPEND}
-	app-doc/doxygen
+	app-text/doxygen
 	>=dev-util/intltool-0.35
 	>=sys-devel/gettext-0.17
 	virtual/pkgconfig
