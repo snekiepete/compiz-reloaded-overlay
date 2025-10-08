@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit autotools git-r3 gnome2-utils
+inherit autotools git-r3 xdg-utils gsettings
 
 DESCRIPTION="OpenGL window and compositing manager"
 HOMEPAGE="https://gitlab.com/compiz"
@@ -102,41 +102,39 @@ src_install() {
 }
 
 compiz_icon_cache_update() {
-	# Needed because compiz needs its own icon cache.
-	# Based on https://gitweb.gentoo.org/repo/gentoo.git/tree/eclass/gnome2-utils.eclass#n241
+	# Compiz has its own icon theme dir; refresh its cache specifically.
 	local dir="${EROOT}/usr/share/compiz/icons/hicolor"
 	local updater="${EROOT}/usr/bin/gtk-update-icon-cache"
-	if [[ -n "$(ls "$dir")" ]]; then
-		"${updater}" -q -f -t "${dir}"
-		rv=$?
 
-		if [[ ! $rv -eq 0 ]] ; then
-			debug-print "Updating cache failed on ${dir}"
-
-			# Add to the list of failures
-			fails+=( "${dir}" )
-
-			retval=2
+	if [[ -d ${dir} ]]; then
+		# Update cache if there are icons (ignore failure to keep pkg phases clean)
+		if compgen -G "${dir}/**/*" >/dev/null; then
+			"${updater}" -q -f -t "${dir}" || ewarn "gtk-update-icon-cache failed for ${dir}"
 		fi
-	elif [[ $(ls "${dir}") = "icon-theme.cache" ]]; then
-		# Clear stale cache files after theme uninstallation
-		rm "${dir}/icon-theme.cache"
-	fi
-
-	if [[ -z $(ls "${dir}") ]]; then
-		# Clear empty theme directories after theme uninstallation
-		rmdir "${dir}"
+		# Remove stale cache if it's the only file left
+		[[ -f ${dir}/icon-theme.cache && -z $(ls -A "${dir}" | grep -v '^icon-theme\.cache$') ]] && rm -f "${dir}/icon-theme.cache"
+		# Remove empty theme directory
+		[[ -z $(ls -A "${dir}") ]] && rmdir "${dir}" 2>/dev/null
 	fi
 }
 
 pkg_postinst() {
-	gnome2_icon_cache_update
+	# Standard XDG caches (replaces gnome2_icon_cache_update)
+	xdg_icon_cache_update
+	xdg_desktop_database_update
+	xdg_mimeinfo_database_update
+
 	compiz_icon_cache_update
+
 	use gsettings && gnome2_schemas_update
 }
 
 pkg_postrm() {
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
+	xdg_desktop_database_update
+	xdg_mimeinfo_database_update
+
 	compiz_icon_cache_update
+
 	use gsettings && gnome2_schemas_update
 }
